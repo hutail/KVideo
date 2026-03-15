@@ -1,8 +1,3 @@
-/**
- * FavoritesSidebar - Main favorites sidebar component
- * Positioned on the left side of the screen (opposite to WatchHistorySidebar)
- */
-
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
@@ -27,12 +22,10 @@ export function FavoritesSidebar({ isPremium = false }: { isPremium?: boolean })
     const sidebarRef = useRef<HTMLElement>(null);
     const cleanupFocusTrapRef = useRef<(() => void) | null>(null);
 
-    // Setup focus trap when sidebar opens
     useEffect(() => {
         if (isOpen && sidebarRef.current) {
             cleanupFocusTrapRef.current = trapFocus(sidebarRef.current);
         }
-
         return () => {
             if (cleanupFocusTrapRef.current) {
                 cleanupFocusTrapRef.current();
@@ -41,24 +34,14 @@ export function FavoritesSidebar({ isPremium = false }: { isPremium?: boolean })
         };
     }, [isOpen]);
 
-    // Handle escape key to close sidebar
     useEffect(() => {
         const handleEscape = (e: KeyboardEvent) => {
-            if (e.key === 'Escape' && isOpen) {
-                setIsOpen(false);
-            }
+            if (e.key === 'Escape' && isOpen) setIsOpen(false);
         };
-
-        if (isOpen) {
-            document.addEventListener('keydown', handleEscape);
-        }
-
-        return () => {
-            document.removeEventListener('keydown', handleEscape);
-        };
+        if (isOpen) document.addEventListener('keydown', handleEscape);
+        return () => document.removeEventListener('keydown', handleEscape);
     }, [isOpen]);
 
-    // Handle delete confirmation
     const handleDeleteItem = (videoId: string | number, source: string) => {
         setDeleteConfirm({ isOpen: true, videoId: String(videoId), source });
     };
@@ -68,15 +51,8 @@ export function FavoritesSidebar({ isPremium = false }: { isPremium?: boolean })
     };
 
     const confirmDelete = () => {
-        if (deleteConfirm.isClearAll) {
-            clearFavorites();
-        } else if (deleteConfirm.videoId && deleteConfirm.source) {
-            removeFavorite(deleteConfirm.videoId, deleteConfirm.source);
-        }
-        setDeleteConfirm({ isOpen: false });
-    };
-
-    const cancelDelete = () => {
+        if (deleteConfirm.isClearAll) clearFavorites();
+        else if (deleteConfirm.videoId && deleteConfirm.source) removeFavorite(deleteConfirm.videoId, deleteConfirm.source);
         setDeleteConfirm({ isOpen: false });
     };
 
@@ -85,16 +61,16 @@ export function FavoritesSidebar({ isPremium = false }: { isPremium?: boolean })
             {/* Toggle Button - Left side */}
             <button
                 onClick={() => setIsOpen(true)}
-                className="fixed left-6 top-1/2 -translate-y-1/2 z-40 bg-[var(--glass-bg)] backdrop-blur-[8px] saturate-[120%] border border-[var(--glass-border)] rounded-[var(--radius-2xl)] shadow-[var(--shadow-md)] p-3 hover:scale-105 transition-transform duration-200 cursor-pointer"
+                className="fixed left-4 top-1/2 -translate-y-1/2 z-40 w-10 h-10 flex items-center justify-center bg-[var(--glass-bg)] backdrop-blur-[12px] saturate-[160%] [-webkit-backdrop-filter:blur(12px)_saturate(160%)] border border-[var(--glass-border)] rounded-[var(--radius-full)] shadow-[var(--shadow-md)] hover:shadow-[var(--shadow-lg)] hover:scale-110 transition-all duration-200 cursor-pointer"
                 aria-label="打开收藏夹"
             >
-                <Icons.Heart size={24} className="text-[var(--text-color)]" />
+                <Icons.Heart size={20} className="text-[var(--text-color-secondary)]" />
             </button>
 
             {/* Backdrop */}
             {isOpen && (
                 <div
-                    className="fixed inset-0 z-[1999] bg-black/40 opacity-0 animate-[fadeIn_0.2s_ease-out_forwards]"
+                    className="fixed inset-0 z-[1999] bg-black/40 backdrop-blur-[6px] [-webkit-backdrop-filter:blur(6px)] opacity-0 animate-[fadeIn_0.2s_ease-out_forwards]"
                     onClick={() => setIsOpen(false)}
                 />
             )}
@@ -109,36 +85,21 @@ export function FavoritesSidebar({ isPremium = false }: { isPremium?: boolean })
                     transform: isOpen ? 'translate3d(0, 0, 0)' : 'translate3d(-100%, 0, 0)',
                     willChange: isOpen ? 'transform' : 'auto'
                 }}
-                className={`fixed top-0 left-0 bottom-0 w-[85%] sm:w-[90%] max-w-[420px] z-[2000] bg-[var(--glass-bg)] backdrop-blur-[8px] saturate-[120%] border-r border-[var(--glass-border)] rounded-tr-[var(--radius-2xl)] rounded-br-[var(--radius-2xl)] p-6 flex flex-col shadow-[0_8px_32px_rgba(0,0,0,0.2)] transition-transform duration-250 ease-out`}
+                className="fixed top-0 left-0 bottom-0 w-[85%] sm:w-[90%] max-w-[400px] z-[2000] bg-[var(--glass-bg)] backdrop-blur-[20px] saturate-[160%] [-webkit-backdrop-filter:blur(20px)_saturate(160%)] border-r border-[var(--glass-border)] rounded-r-[var(--radius-2xl)] p-5 sm:p-6 flex flex-col shadow-[var(--shadow-lg)] transition-transform duration-300 [transition-timing-function:cubic-bezier(0.22,0.68,0,1)]"
             >
                 <FavoritesHeader onClose={() => setIsOpen(false)} />
-
-                <FavoritesList
-                    favorites={favorites}
-                    onRemove={handleDeleteItem}
-                    isPremium={isPremium}
-                />
-
-                <FavoritesFooter
-                    hasFavorites={favorites.length > 0}
-                    onClearAll={handleClearAll}
-                />
+                <FavoritesList favorites={favorites} onRemove={handleDeleteItem} isPremium={isPremium} />
+                <FavoritesFooter hasFavorites={favorites.length > 0} onClearAll={handleClearAll} />
             </aside>
 
-            {/* Watch History Sidebar - Right side */}
             <WatchHistorySidebar isPremium={isPremium} />
 
-            {/* Confirm Dialog */}
             <ConfirmDialog
                 isOpen={deleteConfirm.isOpen}
                 title={deleteConfirm.isClearAll ? '清空收藏夹' : '取消收藏'}
-                message={
-                    deleteConfirm.isClearAll
-                        ? '确定要清空所有收藏吗？此操作无法撤销。'
-                        : '确定要取消收藏这个视频吗？'
-                }
+                message={deleteConfirm.isClearAll ? '确定要清空所有收藏吗？此操作无法撤销。' : '确定要取消收藏这个视频吗？'}
                 onConfirm={confirmDelete}
-                onCancel={cancelDelete}
+                onCancel={() => setDeleteConfirm({ isOpen: false })}
                 confirmText="确定"
                 cancelText="取消"
                 variant="danger"

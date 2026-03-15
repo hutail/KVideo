@@ -16,8 +16,18 @@ const BadgeComponent = memo(function Badge({
   iconPosition = 'left'
 }: BadgeProps) {
   const variants = {
-    primary: "bg-[var(--accent-color)] text-white shadow-[var(--shadow-sm)]",
-    secondary: "bg-[var(--glass-bg)] border border-[var(--glass-border)] text-[var(--text-color)]",
+    primary: `
+      bg-[var(--accent-color)]
+      text-white
+      shadow-[0_1px_4px_color-mix(in_srgb,var(--accent-color)_30%,transparent)]
+    `,
+    secondary: `
+      bg-[var(--glass-bg)]
+      backdrop-blur-[8px]
+      [-webkit-backdrop-filter:blur(8px)]
+      border border-[var(--glass-border)]
+      text-[var(--text-color)]
+    `,
   };
 
   const iconElement = icon && (
@@ -33,9 +43,10 @@ const BadgeComponent = memo(function Badge({
     <span
       className={`
         inline-flex items-center justify-center
-        px-1.5 py-0.5
+        px-2 py-0.5
         rounded-[var(--radius-full)]
-        text-[10px] font-semibold
+        text-[10px] font-bold tracking-[0.02em]
+        leading-tight whitespace-nowrap
         ${variants[variant]}
         ${className}
       `}

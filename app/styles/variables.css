@@ -1,33 +1,42 @@
-/* CSS Custom Properties - Liquid Glass Design System */
+/* CSS Custom Properties - Liquid Glass Design System v5 */
 :root {
-    --font-family-system: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+    --font-family-system: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", sans-serif;
 
     /* Light Mode Palette */
     --bg-color-light: #f0f2f5;
-    --bg-image-light: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
-    --text-color-light: #1d1d1f;
-    --text-color-secondary-light: #6e6e73;
-    --accent-color-light: #007aff;
-    --glass-bg-light: rgba(242, 242, 247, 0.8);
-    --glass-border-light: rgba(255, 255, 255, 0.5);
-    --shadow-color-light: rgba(0, 0, 0, 0.1);
+    --bg-image-light: linear-gradient(135deg, #fdfbfb 0%, #e8ecf1 50%, #f0f2f5 100%);
+    --text-color-light: #1a1a2e;
+    --text-color-secondary-light: #64748b;
+    --accent-color-light: #2563eb;
+    --accent-hover-light: #1d4ed8;
+    --glass-bg-light: rgba(255, 255, 255, 0.72);
+    --glass-border-light: rgba(255, 255, 255, 0.45);
+    --shadow-color-light: rgba(0, 0, 0, 0.08);
 
     /* Dark Mode Palette */
-    --bg-color-dark: #121212;
-    --bg-image-dark: linear-gradient(120deg, #272B30 0%, #121212 100%);
-    --text-color-dark: #f5f5f7;
-    --text-color-secondary-dark: #8e8e93;
-    --accent-color-dark: #0a84ff;
-    --glass-bg-dark: rgba(28, 28, 30, 0.75);
-    --glass-border-dark: rgba(60, 60, 60, 0.7);
-    --shadow-color-dark: rgba(0, 0, 0, 0.3);
+    --bg-color-dark: #0a0a0f;
+    --bg-image-dark: linear-gradient(135deg, #0a0a0f 0%, #141420 50%, #0d0d14 100%);
+    --text-color-dark: #f0f0f5;
+    --text-color-secondary-dark: #7c8298;
+    --accent-color-dark: #3b82f6;
+    --accent-hover-dark: #60a5fa;
+    --glass-bg-dark: rgba(22, 22, 35, 0.78);
+    --glass-border-dark: rgba(255, 255, 255, 0.06);
+    --shadow-color-dark: rgba(0, 0, 0, 0.45);
 
     /* Universal Variables */
+    --radius-xs: 0.5rem;
+    --radius-sm: 0.75rem;
+    --radius-md: 1rem;
+    --radius-lg: 1.25rem;
     --radius-2xl: 1.5rem;
     --radius-full: 9999px;
-    --shadow-sm: 0 2px 4px var(--shadow-color);
-    --shadow-md: 0 4px 12px var(--shadow-color);
-    --transition-fluid: 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    --shadow-sm: 0 1px 3px var(--shadow-color), 0 1px 2px var(--shadow-color);
+    --shadow-md: 0 4px 16px var(--shadow-color), 0 2px 4px var(--shadow-color);
+    --shadow-lg: 0 8px 32px var(--shadow-color), 0 4px 8px var(--shadow-color);
+    --transition-fluid: 0.35s cubic-bezier(0.22, 0.68, 0, 1);
+    --transition-spring: 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    --transition-snappy: 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 
     /* Active Theme Variables (default: light) */
     --bg-color: var(--bg-color-light);
@@ -35,12 +44,12 @@
     --text-color: var(--text-color-light);
     --text-color-secondary: var(--text-color-secondary-light);
     --accent-color: var(--accent-color-light);
+    --accent-hover: var(--accent-hover-light);
     --glass-bg: var(--glass-bg-light);
     --glass-border: var(--glass-border-light);
     --shadow-color: var(--shadow-color-light);
-
     --background: #f0f2f5;
-    --foreground: #1d1d1f;
+    --foreground: #1a1a2e;
 }
 
 body {
@@ -49,6 +58,7 @@ body {
     --text-color: var(--text-color-light);
     --text-color-secondary: var(--text-color-secondary-light);
     --accent-color: var(--accent-color-light);
+    --accent-hover: var(--accent-hover-light);
     --glass-bg: var(--glass-bg-light);
     --glass-border: var(--glass-border-light);
     --shadow-color: var(--shadow-color-light);
@@ -58,8 +68,7 @@ body {
     background-attachment: fixed;
     color: var(--text-color);
     font-family: var(--font-family-system);
-    transition: background 0.3s ease;
-
+    transition: background 0.4s ease;
     -webkit-overflow-scrolling: touch;
     overscroll-behavior-y: none;
 }
@@ -71,10 +80,10 @@ body.dark,
     --text-color: var(--text-color-dark);
     --text-color-secondary: var(--text-color-secondary-dark);
     --accent-color: var(--accent-color-dark);
+    --accent-hover: var(--accent-hover-dark);
     --glass-bg: var(--glass-bg-dark);
     --glass-border: var(--glass-border-dark);
     --shadow-color: var(--shadow-color-dark);
-
-    --background: #121212;
-    --foreground: #f5f5f7;
+    --background: #0a0a0f;
+    --foreground: #f0f0f5;
 }

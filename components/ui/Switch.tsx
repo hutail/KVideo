@@ -1,10 +1,5 @@
 'use client';
 
-/**
- * Switch - A reusable toggle switch component
- * Following Liquid Glass design system
- */
-
 import React from 'react';
 
 interface SwitchProps {
@@ -26,8 +21,8 @@ export function Switch({
         <label
             className={`
                 relative inline-flex items-center cursor-pointer
-                h-[30px] w-[50px] shrink-0
-                ${disabled ? 'opacity-50 cursor-not-allowed' : ''}
+                h-[28px] w-[48px] shrink-0
+                ${disabled ? 'opacity-40 cursor-not-allowed' : ''}
                 ${className}
             `}
         >
@@ -42,19 +37,21 @@ export function Switch({
             <div
                 className={`
                     w-full h-full rounded-[var(--radius-full)]
-                    bg-[color-mix(in_srgb,var(--text-color)_20%,transparent)]
+                    bg-[color-mix(in_srgb,var(--text-color)_15%,transparent)]
                     peer-checked:bg-[var(--accent-color)]
-                    transition-[background-color] duration-[0.4s]
-                    [transition-timing-function:cubic-bezier(0.2,0.8,0.2,1)]
+                    transition-[background-color,box-shadow] duration-[0.35s]
+                    [transition-timing-function:cubic-bezier(0.22,0.68,0,1)]
+                    peer-checked:shadow-[0_0_8px_color-mix(in_srgb,var(--accent-color)_30%,transparent)]
                     before:content-[''] before:absolute
-                    before:h-[26px] before:w-[26px]
-                    before:left-[2px] before:bottom-[2px]
+                    before:h-[22px] before:w-[22px]
+                    before:left-[3px] before:top-[3px]
                     before:bg-white before:rounded-[var(--radius-full)]
-                    before:transition-transform before:duration-[0.4s]
-                    before:[transition-timing-function:cubic-bezier(0.2,0.8,0.2,1)]
-                    before:shadow-[0_1px_3px_rgba(0,0,0,0.2)]
+                    before:transition-[transform,width] before:duration-[0.35s]
+                    before:[transition-timing-function:cubic-bezier(0.22,0.68,0,1)]
+                    before:shadow-[0_1px_4px_rgba(0,0,0,0.15)]
                     peer-checked:before:translate-x-[20px]
-                    active:before:scale-95
+                    active:before:w-[26px]
+                    peer-checked:active:before:translate-x-[16px]
                 `}
             />
         </label>

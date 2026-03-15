@@ -1,4 +1,4 @@
-/* Base Styles */
+/* Base Styles - Liquid Glass Design System v5 */
 *,
 *::before,
 *::after {
@@ -46,7 +46,7 @@ select:focus-visible {
 
 /* Scrollbar Styles */
 ::-webkit-scrollbar {
-    width: 10px;
+    width: 8px;
 }
 
 ::-webkit-scrollbar-track {
@@ -54,21 +54,19 @@ select:focus-visible {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: rgba(128, 128, 128, 0.5);
-    background: color-mix(in srgb, var(--glass-bg) 80%, transparent);
+    background: color-mix(in srgb, var(--text-color) 15%, transparent);
     border-radius: var(--radius-full);
     border: 2px solid transparent;
     background-clip: padding-box;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: rgba(0, 122, 255, 0.6);
-    background: color-mix(in srgb, var(--accent-color) 60%, transparent);
+    background: color-mix(in srgb, var(--accent-color) 50%, transparent);
     background-clip: padding-box;
 }
 
 .search-history-dropdown::-webkit-scrollbar {
-    width: 6px;
+    width: 5px;
 }
 
 .search-history-dropdown::-webkit-scrollbar-track {
@@ -76,8 +74,7 @@ select:focus-visible {
 }
 
 .search-history-dropdown::-webkit-scrollbar-thumb {
-    background: rgba(128, 128, 128, 0.5);
-    background: color-mix(in srgb, var(--glass-bg) 80%, transparent);
+    background: color-mix(in srgb, var(--text-color) 15%, transparent);
     border-radius: var(--radius-full);
 }
 
@@ -114,13 +111,8 @@ nav:where(.sticky, .fixed),
     transform: translateZ(0);
 }
 
-/* [class*="grid"]>* {
-    content-visibility: auto;
-    contain-intrinsic-size: auto 400px;
-} */
-
 [class*="grid"]>a {
-    animation: fadeInUp 0.2s ease-out;
+    animation: fadeInUp 0.25s cubic-bezier(0.22, 0.68, 0, 1);
 }
 
 @supports (content-visibility: auto) {
@@ -137,12 +129,10 @@ body.scrolling * {
     pointer-events: none !important;
 }
 
-.group:hover img,
 .glass-card,
 nav {
     transform: translateZ(0);
     backface-visibility: hidden;
-    perspective: 1000px;
 }
 
 [class*="badge"],
@@ -160,7 +150,7 @@ nav {
 body.tv-mode [data-focusable]:focus {
     outline: 3px solid var(--accent-color);
     outline-offset: 4px;
-    box-shadow: 0 0 0 6px rgba(0, 122, 255, 0.2);
+    box-shadow: 0 0 0 6px color-mix(in srgb, var(--accent-color) 20%, transparent);
     transform: scale(1.03);
     transition: transform 0.15s ease-out, box-shadow 0.15s ease-out;
 }

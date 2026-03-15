@@ -11,11 +11,11 @@ interface CardProps {
 
 export function Card({ children, className = '', hover = true, blur = true, onClick, style }: CardProps) {
   const hoverStyles = hover
-    ? "hover:translate-y-[-5px] hover:scale-[1.02] hover:shadow-[0_8px_24px_var(--shadow-color)] hover:z-10 cursor-pointer"
+    ? "hover:translate-y-[-3px] hover:shadow-[var(--shadow-lg)] hover:z-10 cursor-pointer"
     : "";
 
   const blurClasses = blur
-    ? "bg-[var(--glass-bg)] backdrop-blur-[25px] saturate-[180%] [-webkit-backdrop-filter:blur(25px)_saturate(180%)]"
+    ? "bg-[var(--glass-bg)] backdrop-blur-[20px] saturate-[180%] [-webkit-backdrop-filter:blur(20px)_saturate(180%)]"
     : "bg-[var(--bg-color)]/90";
 
   const baseClasses = `
@@ -26,7 +26,7 @@ export function Card({ children, className = '', hover = true, blur = true, onCl
     border-[var(--glass-border)]
     p-4 md:p-6
     relative
-    transition-all duration-[0.4s] [transition-timing-function:cubic-bezier(0.2,0.8,0.2,1)]
+    transition-all duration-[0.35s] [transition-timing-function:cubic-bezier(0.22,0.68,0,1)]
     ${hoverStyles}
     ${className}
   `;

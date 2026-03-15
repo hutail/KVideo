@@ -54,9 +54,9 @@ export function ConfirmDialog({
   if (!isOpen) return null;
 
   const variantStyles = {
-    danger: 'bg-red-500 hover:bg-red-600',
-    warning: 'bg-[var(--accent-color)] hover:brightness-110',
-    info: 'bg-blue-500 hover:bg-blue-600',
+    danger: 'bg-red-500 hover:bg-red-600 shadow-[0_2px_8px_rgba(239,68,68,0.3)]',
+    warning: 'bg-[var(--accent-color)] hover:bg-[var(--accent-hover,var(--accent-color))]',
+    info: 'bg-blue-500 hover:bg-blue-600 shadow-[0_2px_8px_rgba(59,130,246,0.3)]',
   };
 
   const finalVariant = dangerous ? 'danger' : variant;
@@ -65,7 +65,7 @@ export function ConfirmDialog({
     <>
       {/* Backdrop */}
       <div
-        className="fixed inset-0 z-[9998] bg-black/30 backdrop-blur-[8px] [-webkit-backdrop-filter:blur(8px)] animate-fade-in"
+        className="fixed inset-0 z-[9998] bg-black/40 backdrop-blur-[12px] [-webkit-backdrop-filter:blur(12px)] animate-fade-in"
         onClick={onCancel}
         aria-hidden="true"
       />
@@ -78,16 +78,16 @@ export function ConfirmDialog({
         aria-describedby="dialog-description"
         className="fixed top-1/2 left-1/2 z-[9999] w-[90%] max-w-md -translate-x-1/2 -translate-y-1/2 animate-scale-in"
       >
-        <Card hover={false} className="p-6">
+        <Card hover={false} className="p-6 md:p-8">
           <h2
             id="dialog-title"
-            className="text-xl font-semibold text-[var(--text-color)] mb-3"
+            className="text-lg font-bold text-[var(--text-color)] mb-2 tracking-[-0.02em]"
           >
             {title}
           </h2>
           <p
             id="dialog-description"
-            className="text-[var(--text-color-secondary)] mb-6 leading-relaxed"
+            className="text-[var(--text-color-secondary)] mb-6 leading-relaxed text-sm"
           >
             {message}
           </p>
@@ -96,13 +96,13 @@ export function ConfirmDialog({
               ref={cancelButtonRef}
               variant="secondary"
               onClick={onCancel}
-              className="min-w-[100px]"
+              className="min-w-[90px]"
             >
               {cancelText}
             </Button>
             <Button
               onClick={onConfirm}
-              className={`min-w-[100px] ${variantStyles[finalVariant]}`}
+              className={`min-w-[90px] ${variantStyles[finalVariant]}`}
             >
               {confirmText}
             </Button>

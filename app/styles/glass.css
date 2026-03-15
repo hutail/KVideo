@@ -1,8 +1,8 @@
-/* Glass Components - Liquid Glass Design System */
+/* Glass Components - Liquid Glass Design System v5 */
 .glass-card {
     background: var(--glass-bg);
-    backdrop-filter: blur(25px) saturate(180%);
-    -webkit-backdrop-filter: blur(25px) saturate(180%);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
     border-radius: var(--radius-2xl);
     box-shadow: var(--shadow-md);
     border: 1px solid var(--glass-border);
@@ -11,16 +11,16 @@
 }
 
 .glass-card:hover {
-    transform: translateY(-5px) scale(1.02);
-    box-shadow: 0 8px 24px var(--shadow-color);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
     z-index: 10;
 }
 
 .glass-input {
     width: 100%;
     background: var(--glass-bg);
-    backdrop-filter: blur(10px) saturate(150%);
-    -webkit-backdrop-filter: blur(10px) saturate(150%);
+    backdrop-filter: blur(12px) saturate(160%);
+    -webkit-backdrop-filter: blur(12px) saturate(160%);
     border: 1px solid var(--glass-border);
     border-radius: var(--radius-2xl);
     color: var(--text-color);
@@ -30,7 +30,8 @@
 .glass-input:focus {
     outline: none;
     border-color: var(--accent-color);
-    box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent-color) 30%, transparent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent-color) 20%, transparent),
+                var(--shadow-md);
 }
 
 .glass-button {
@@ -41,30 +42,28 @@
     color: white;
     border: none;
     border-radius: var(--radius-2xl);
-    padding: 0.75rem 1.25rem;
+    padding: 0.75rem 1.5rem;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.2s ease;
-    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-snappy);
+    box-shadow: 0 2px 8px color-mix(in srgb, var(--accent-color) 35%, transparent);
 }
 
 .glass-button:hover {
-    transform: translateY(-2px);
-    filter: brightness(1.1);
-    box-shadow: 0 4px 8px var(--shadow-color);
+    transform: translateY(-1px);
+    background: var(--accent-hover, var(--accent-color));
+    box-shadow: 0 4px 16px color-mix(in srgb, var(--accent-color) 40%, transparent);
 }
 
 .glass-button:active {
-    transform: translateY(0) scale(0.98);
-    filter: brightness(0.95);
+    transform: translateY(0) scale(0.97);
 }
 
 .glass-button:disabled {
     background-color: var(--text-color-secondary);
-    opacity: 0.5;
+    opacity: 0.4;
     cursor: not-allowed;
     transform: none;
-    filter: none;
     box-shadow: none;
 }
 
@@ -72,33 +71,45 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 0.25rem 0.75rem;
+    padding: 0.2rem 0.625rem;
     border-radius: var(--radius-full);
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     font-weight: 600;
     background-color: var(--accent-color);
     color: white;
+    letter-spacing: 0.01em;
 }
 
 .glass-badge-secondary {
     background: var(--glass-bg);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     border: 1px solid var(--glass-border);
     color: var(--text-color);
 }
 
 /* Glass backdrop for modals/drawers */
 .glass-backdrop {
-    background-color: rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(12px) saturate(120%);
+    -webkit-backdrop-filter: blur(12px) saturate(120%);
 }
 
 /* Glass popover/dropdown */
 .glass-popover {
     background: var(--glass-bg);
-    backdrop-filter: blur(25px) saturate(180%);
-    -webkit-backdrop-filter: blur(25px) saturate(180%);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
     border-radius: var(--radius-2xl);
-    box-shadow: var(--shadow-md);
+    box-shadow: var(--shadow-lg);
     border: 1px solid var(--glass-border);
+}
+
+/* Glass surface - subtle inner highlight */
+.glass-surface {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-2xl);
 }

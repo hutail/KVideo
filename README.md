@@ -10,7 +10,7 @@
 
 **在线体验：[https://kvideo.pages.dev/](https://kvideo.pages.dev/)**
 
-[![Version](https://img.shields.io/badge/Version-4.6.0-blue?style=for-the-badge)](https://github.com/KuekHaoYang/KVideo)
+[![Version](https://img.shields.io/badge/Version-4.7.0-blue?style=for-the-badge)](https://github.com/KuekHaoYang/KVideo)
 [![Next.js](https://img.shields.io/badge/Next.js-16.1-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
 [![React](https://img.shields.io/badge/React-19.2-blue?style=for-the-badge&logo=react)](https://react.dev/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-4.0-38B2AC?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com/)

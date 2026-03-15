@@ -1,4 +1,4 @@
-/* Effects - Liquid Glass Design System */
+/* Effects - Liquid Glass Design System v5 */
 @keyframes pulse {
     0%, 100% { opacity: 1; }
     50% { opacity: 0.5; }
@@ -20,7 +20,7 @@
 
 @keyframes bounce-subtle {
     0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-5px); }
+    50% { transform: translateY(-4px); }
 }
 
 @keyframes shimmer {
@@ -44,15 +44,43 @@
     50% { background-position: 100% 50%; }
 }
 
+@keyframes glow-pulse {
+    0%, 100% { box-shadow: 0 0 8px color-mix(in srgb, var(--accent-color) 20%, transparent); }
+    50% { box-shadow: 0 0 20px color-mix(in srgb, var(--accent-color) 40%, transparent); }
+}
+
 /* Lensing inner-glow effect for interactive elements */
 .glass-glow:hover {
     box-shadow:
-        0 8px 24px var(--shadow-color),
-        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+        var(--shadow-lg),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 .glass-glow:focus-visible {
     box-shadow:
-        0 0 0 3px color-mix(in srgb, var(--accent-color) 30%, transparent),
-        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+        0 0 0 3px color-mix(in srgb, var(--accent-color) 25%, transparent),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Hover lift effect */
+.hover-lift {
+    transition: transform var(--transition-fluid), box-shadow var(--transition-fluid);
+}
+
+.hover-lift:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Subtle scale on hover */
+.hover-scale {
+    transition: transform var(--transition-snappy);
+}
+
+.hover-scale:hover {
+    transform: scale(1.03);
+}
+
+.hover-scale:active {
+    transform: scale(0.97);
 }

@@ -2,10 +2,6 @@
 
 import { useRef, useEffect, useState } from 'react';
 
-/**
- * SegmentedControl - A switch-style tab component following Liquid Glass design
- */
-
 interface SegmentedControlProps<T extends string> {
     options: { label: string; value: T }[];
     value: T;
@@ -48,17 +44,17 @@ export function SegmentedControl<T extends string>({
             className={`
                 relative flex p-1
                 bg-[var(--glass-bg)]
-                backdrop-blur-[25px] saturate-[180%]
-                [-webkit-backdrop-filter:blur(25px)_saturate(180%)]
+                backdrop-blur-[20px] saturate-[180%]
+                [-webkit-backdrop-filter:blur(20px)_saturate(180%)]
                 border border-[var(--glass-border)]
-                rounded-[var(--radius-2xl)]
+                rounded-[var(--radius-full)]
                 shadow-[var(--shadow-sm)]
                 ${className}
             `}
         >
             {/* Sliding Indicator */}
             <div
-                className="absolute top-1 bottom-1 bg-[var(--accent-color)] rounded-[calc(var(--radius-2xl)-4px)] shadow-[0_2px_8px_color-mix(in_srgb,var(--accent-color)_30%,transparent)] transition-all duration-300 [transition-timing-function:cubic-bezier(0.2,0.8,0.2,1)]"
+                className="absolute top-1 bottom-1 bg-[var(--accent-color)] rounded-[calc(var(--radius-full)-4px)] shadow-[0_2px_12px_color-mix(in_srgb,var(--accent-color)_35%,transparent)] transition-all duration-[0.35s] [transition-timing-function:cubic-bezier(0.22,0.68,0,1)]"
                 style={{
                     left: `${indicatorStyle.left}px`,
                     width: `${indicatorStyle.width}px`,
@@ -72,9 +68,10 @@ export function SegmentedControl<T extends string>({
                     data-value={option.value}
                     onClick={() => onChange(option.value)}
                     className={`
-                        relative z-10 flex-1 py-2 px-4
-                        text-sm font-semibold
+                        relative z-10 flex-1 py-2 px-5
+                        text-sm font-semibold tracking-[-0.01em]
                         transition-colors duration-200
+                        cursor-pointer select-none
                         ${value === option.value
                             ? 'text-white'
                             : 'text-[var(--text-color-secondary)] hover:text-[var(--text-color)]'
